@@ -2,13 +2,13 @@
 
 This C++ API example demonstrates how to run a 3D-convolution and relu3 layer with int8 data type using Intel's OneDNN library. 
 To run example do the following steps:
-	1- Open terminal
-	2- Cd cnn_convolution_with_quantization
-	3- Open the Makefile, update INC_PATH and LIB_PATH variables and save it
-	4- Type "make" in terminal
-	5- Run the created output as follow:
+	- Open terminal
+	- Cd cnn_convolution_with_quantization
+	- Open the Makefile, update INC_PATH and LIB_PATH variables and save it
+	- Type "make" in terminal
+	- Run the created output as follow:
 		DNNL_VERBOSE=1 ./cnn_inference_int8
-	6. type /.../input_test_files/300_300.txt
+	- type /.../input_test_files/300_300.txt
 	    or /.../input_test_files/1000_1000_7_7.txt
 
 		
