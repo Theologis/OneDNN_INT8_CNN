@@ -26,6 +26,7 @@
 #include <stdlib.h>
 #include <string>
 #include <initializer_list>
+#include <inttypes.h> // for the macros
 
 #include "dnnl.hpp"
 #include "dnnl_debug.h"
