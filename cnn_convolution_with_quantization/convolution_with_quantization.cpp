@@ -316,8 +316,9 @@ void simple_net_ref(engine::kind engine_kind, char *filepath, int times = 100) {
     //  Weigts Debugging
     float *handler1 = (float *)user_weights_memory.get_data_handle();
     printf("First two CNN weigts: %f, %f\n", *handler1,handler1[1]);
-    int *handler2 = (int *)conv_weights_memory.get_data_handle();
-    printf("First two CNN quantized weigts: %d, %d\n", *handler2,handler2[1]);
+    std::vector<int8_t> quan_conv_weights(product(conv_weights_tz));
+    read_from_dnnl_memory(quan_conv_weights.data(), conv_weights_memory);
+    printf("A = %" PRId8 ", B = %" PRIi8 "\n", quan_conv_weights[0],quan_conv_weights[1]);
 
         //Bias Quantiaztion
     auto conv_bias_memory = memory(conv_prim_desc.bias_desc(), eng);
