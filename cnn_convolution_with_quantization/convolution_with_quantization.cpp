@@ -189,16 +189,16 @@ void simple_net_ref(engine::kind engine_kind, char *filepath, int times = 100) {
 
     //[Choose scaling factors]
     // Choose scaling factors for input, weight, output and bias quantization
-    const std::vector<float> src_scales = {1.8f};
-    const std::vector<float> weight_scales = {2.0f};
+    const std::vector<float> src_scales = {1.0f};
+    const std::vector<float> weight_scales = {0.1f};
     const std::vector<float> bias_scales = {1.0f};
     const std::vector<float> dst_scales = {0.55f};
 
     // Choose channel-wise scaling factors for convolution
     std::vector<float> conv_scales(c_bias);
     const int scales_half = c_bias / 2;
-    std::fill(conv_scales.begin(), conv_scales.begin() + scales_half, 0.3f);
-    std::fill(conv_scales.begin() + scales_half + 1, conv_scales.end(), 0.8f);
+    std::fill(conv_scales.begin(), conv_scales.begin() + scales_half, 1.0f);
+    std::fill(conv_scales.begin() + scales_half + 1, conv_scales.end(), 1.0f);
     //[Choose scaling factors]
 
     /// The *source, weights, bias* and *destination* datasets use the single-scale
@@ -226,7 +226,7 @@ void simple_net_ref(engine::kind engine_kind, char *filepath, int times = 100) {
     auto conv_src_md = memory::desc({conv_src_tz}, dt::u8, tag::any);
     auto conv_bias_md = memory::desc({conv_bias_tz}, dt::s8, tag::any);
     auto conv_weights_md = memory::desc({conv_weights_tz}, dt::s8, tag::any);
-    auto conv_dst_md = memory::desc({conv_dst_tz}, dt::u8, tag::any);
+    auto conv_dst_md = memory::desc({conv_dst_tz}, dt::u32, tag::any);
     //[Create convolution memory descriptors]
 
 
